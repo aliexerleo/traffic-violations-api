@@ -29,67 +29,42 @@
                     <a class="nav-link active" aria-current="page" href="#">Vehicle</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Official</a>
+                    <a class="nav-link" href="{% url 'list_official' %}">Official</a>
                 </li>
             </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
 
 <div class="container py-4">
     <div class="row">
-        <div class="col-md-4">
-            <h2>Add new official</h2>
+        <div class="col-md-4 col-offset-md-4">
+            <h2>Update data of official</h2>
             <div class="card">
                 <div class="card body">
-                    <form action="/addOfficial/" method="POST">
+                    <form action="/editingOfficial/" method="POST">
                         {% csrf_token %}
+                        <input type="hidden" name="id" value="{{official.id}}">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="enter name" class="form-control">
+                            <input type="text" name="name" value="{{official.name}}" placeholder="enter name"
+                                class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="number" placeholder="enter number" class="form-control">
+                            <input type="text" name="id_number" value="{{official.id_number}}"
+                                placeholder="enter id number" class="form-control">
                         </div>
                         <br>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block">Add Official</button>
+                            <button type="submit" class="btn btn-success btn-block">Save</button>
                         </div>
                     </form>
                 </div>
 
             </div>
-        </div>
-        <div class="col-md-8">
-            <h2>List of Official</h2>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Id numer</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in dataset %}
-                        <tr>
-                            <td>{{ data.name }}</td>
-                            <td>{{ data.id_number }}</td>
-                            <td>
-                                <a href="{% url 'edit_official' data.id %}"
-                                    class="btn btn-sm btn-block btn-primary">Edit</a>
-                            </td>
-                            <td>
-                                <a href="{% url 'delete_official' data.id %}"
-                                    class="btn btn-sm btn-block btn-danger">Delete </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-
         </div>
     </div>
 

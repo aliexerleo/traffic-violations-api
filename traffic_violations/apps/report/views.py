@@ -56,3 +56,20 @@ def create_official(request):
         official = Official.objects.create(name=name, id_number=id_number)
         return redirect('/official/')
     return render(request, "list_official.html", {})
+
+def update_official(request, id):
+    official = Official.objects.get(id=id)
+    data = {
+        'official': official
+    }
+    return render(request, "update_official.html", data)
+
+def updating_official(request):
+    id = int(request.POST.get('id'))
+    name = request.POST.get('name')
+    id_number = request.POST.get('id_number')
+    official = Official.objects.get(id=id)
+    official.name = name
+    official.id_number = id_number
+    official.save()
+    return redirect('/official')
