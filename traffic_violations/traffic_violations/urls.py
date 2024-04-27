@@ -34,5 +34,12 @@ urlpatterns = [
     path('editOfficial/<int:id>', views.update_official, name='edit_official'),
     path('editingOfficial/', views.updating_official, name='editing_official'),
 
+    # url  vehicle
+    path('vehicle/', views.list_vehicle, name='list_vehicle'),
+    path('deleteVehicle/<int:id>', views.delete_vehicle, name='delete_vehicle'),
+    path('addVehicle/', views.create_vehicle, name='add_vehicle'),
+    # path('editOfficial/<int:id>', views.update_official, name='edit_official'),
+    # path('editingOfficial/', views.updating_official, name='editing_official'),
+
 
 ]

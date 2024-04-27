@@ -1,6 +1,6 @@
 from django.shortcuts import (redirect,render)
 # Create your views here.
-from apps.report.models import Person, Official
+from apps.report.models import Person, Official, Vehicle
 
 # persons
 def list_persons(request):
@@ -73,3 +73,24 @@ def updating_official(request):
     official.id_number = id_number
     official.save()
     return redirect('/official')
+
+# vehicles
+def list_vehicle(request):
+    context ={}
+    context["dataset"] = Vehicle.objects.all()
+    return render(request, "list_vehicle.html", context)
+
+def delete_vehicle(request, id):
+    vehicle = Vehicle.objects.get(id=id)
+    vehicle.delete()
+    return redirect('/vehicle/')
+
+def create_vehicle(request):
+    if request.method == "POST":
+        vehicle_number = request.POST.get('vehicle_number')
+        vehicle_type = request.POST.get('vehicle_type')
+        vehicle_color = request.POST.get('vehicle_color')
+        # id_number = request.POST.get('vehicle_type')
+        vehicle = Vehicle.objects.create(vehicle_number=vehicle_number, vehicle_type=vehicle_type, vehicle_color=vehicle_color)
+        return redirect('/vehicle/')
+    return render(request, "list_vehicle.html", {})
