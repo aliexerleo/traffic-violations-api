@@ -20,12 +20,18 @@ from apps.report import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # url to add person
+    # url  person
     path('', views.list_persons, name='list_persons'),
     path('delete/<int:id>', views.delete_person, name='delete_person'),
     path('addPerson/', views.create_person, name='add_person'),
     path('edit/<int:id>', views.update_person, name='edit_person'),
     path('editing/', views.updating_person, name='editing_person'),
+
+    # url  official
+    path('official/', views.list_official, name='list_official'),
+    path('deleteOfficial/<int:id>', views.delete_official, name='delete_official'),
+    path('addOfficial/', views.create_official, name='add_official'),
+
 
 
 ]
