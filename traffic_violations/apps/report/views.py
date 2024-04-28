@@ -1,6 +1,8 @@
 from django.shortcuts import (redirect,render)
 # Create your views here.
-from apps.report.models import Person, Official, Vehicle
+# import django user model
+from django.contrib.auth.models import User
+from apps.report.models import Person, Vehicle
 
 # persons
 def list_persons(request):
@@ -41,24 +43,24 @@ def updating_person(request):
 # officcial
 def list_official(request):
     context ={}
-    context["dataset"] = Official.objects.all()
+    context["dataset"] = User.objects.all()
     return render(request, "list_official.html", context)
 
 def delete_official(request, id):
-    official = Official.objects.get(id=id)
+    official = User.objects.get(id=id)
     official.delete()
     return redirect('/official/')
 
 def create_official(request):
     if request.method == "POST":
-        name = request.POST.get('name')
-        id_number = request.POST.get('number')
-        official = Official.objects.create(name=name, id_number=id_number)
+        name = request.POST.get('username')
+        official = User.objects.create(username=name)
         return redirect('/official/')
     return render(request, "list_official.html", {})
 
 def update_official(request, id):
-    official = Official.objects.get(id=id)
+    official = User.objects.get(id=id)
+    print(official)
     data = {
         'official': official
     }
@@ -67,10 +69,9 @@ def update_official(request, id):
 def updating_official(request):
     id = int(request.POST.get('id'))
     name = request.POST.get('name')
-    id_number = request.POST.get('id_number')
-    official = Official.objects.get(id=id)
-    official.name = name
-    official.id_number = id_number
+    print(name)
+    official = User.objects.get(id=id)
+    official.username = name
     official.save()
     return redirect('/official')
 

@@ -30,7 +30,6 @@ urlpatterns = [
     # url  official
     path('official/', views.list_official, name='list_official'),
     path('deleteOfficial/<int:id>', views.delete_official, name='delete_official'),
-    path('addOfficial/', views.create_official, name='add_official'),
     path('editOfficial/<int:id>', views.update_official, name='edit_official'),
     path('editingOfficial/', views.updating_official, name='editing_official'),
 
