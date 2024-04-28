@@ -76,8 +76,12 @@ def updating_official(request):
 
 # vehicles
 def list_vehicle(request):
-    context ={}
-    context["dataset"] = Vehicle.objects.all()
+    person = Person.objects.all()
+    vehicle = Vehicle.objects.all()
+    context ={
+        'person': person,
+        'vehicle': vehicle
+    }
     return render(request, "list_vehicle.html", context)
 
 def delete_vehicle(request, id):
@@ -87,10 +91,29 @@ def delete_vehicle(request, id):
 
 def create_vehicle(request):
     if request.method == "POST":
+        person = request.POST.get('person')
         vehicle_number = request.POST.get('vehicle_number')
         vehicle_type = request.POST.get('vehicle_type')
         vehicle_color = request.POST.get('vehicle_color')
-        # id_number = request.POST.get('vehicle_type')
-        vehicle = Vehicle.objects.create(vehicle_number=vehicle_number, vehicle_type=vehicle_type, vehicle_color=vehicle_color)
+        vehicle = Vehicle.objects.create(vehicle_number=vehicle_number, vehicle_type=vehicle_type, vehicle_color=vehicle_color, person_id=person)
         return redirect('/vehicle/')
     return render(request, "list_vehicle.html", {})
+
+def update_vehicle(request, id):
+    vehicle = Vehicle.objects.get(id=id)
+    data = {
+        'vehicle': vehicle
+    }
+    return render(request, "update_vehicle.html", data)
+
+def updating_vehicle(request):
+    id = request.POST.get('id')
+    vehicle_number = request.POST.get('vehicle_number')
+    vehicle_type = request.POST.get('vehicle_type')
+    vehicle_color = request.POST.get('vehicle_color')
+    vehicle = Vehicle.objects.get(id=id)
+    vehicle.vehicle_number = vehicle_number
+    vehicle.vehicle_type = vehicle_type
+    vehicle.vehicle_color = vehicle_color
+    vehicle.save()
+    return redirect('/vehicle')

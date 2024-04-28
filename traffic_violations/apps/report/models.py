@@ -11,6 +11,7 @@ class Person(models.Model):
         return '{0}, {1}'.format(self.name, self.email)
 
 class Vehicle(models.Model):
+    id = models.AutoField(primary_key=True)
     vehicle_number = models.CharField(max_length=100)
     vehicle_type = models.CharField(max_length=100)
     vehicle_color = models.CharField(max_length=100)

@@ -39,19 +39,23 @@
 <div class="container py-4">
     <div class="row">
         <div class="col-md-4 col-offset-md-4">
-            <h2>Update data of official</h2>
+            <h2>Update data of vehicle</h2>
             <div class="card">
                 <div class="card body">
-                    <form action="/editingOfficial/" method="POST">
+                    <form action="/editingVehicle/" method="POST">
                         {% csrf_token %}
-                        <input type="hidden" name="id" value="{{official.id}}">
+                        <input type="hidden" name="id" value="{{vehicle.id}}">
                         <div class="form-group">
-                            <input type="text" name="name" value="{{official.name}}" placeholder="enter name"
-                                class="form-control">
+                            <input type="text" name="vehicle_number" value="{{vehicle.vehicle_number}}"
+                                placeholder="enter name" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="id_number" value="{{official.id_number}}"
-                                placeholder="enter id number" class="form-control">
+                            <input type="text" name="vehicle_type" value="{{vehicle.vehicle_type}}"
+                                placeholder="enter email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="vehicle_color" value="{{vehicle.vehicle_color}}"
+                                placeholder="enter email" class="form-control">
                         </div>
                         <br>
                         <div class="form-group">

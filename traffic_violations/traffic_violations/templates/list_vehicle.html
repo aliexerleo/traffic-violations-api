@@ -39,7 +39,7 @@
 <div class="container py-4">
     <div class="row">
         <div class="col-md-4">
-            <h2>Add new Vehicle</h2>
+            <h2>Add new vehicle</h2>
             <div class="card">
                 <div class="card body">
                     <form action="/addVehicle/" method="POST">
@@ -57,6 +57,17 @@
                                 class="form-control">
                         </div>
                         <br>
+                        <label for="person">Select person</label>
+                        <br>
+                        {% if person %}
+                        <select class="form-select" aria-label="Default select example" name="person">
+                            <option selected>Select one</option>
+                            {% for persons in person %}
+                            <option value="{{ person.id }}">{{ persons.name }}</option>
+                            {% endfor %}
+                        </select>
+                        {% endif %}
+                        <br>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-block">Add Vehicle</button>
                         </div>
@@ -71,19 +82,21 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Car Licence</th>
+                            <th>Licence</th>
                             <th>Car brand</th>
                             <th>Car Color</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for data in dataset %}
+                        {% for data in vehicle %}
                         <tr>
                             <td>{{ data.vehicle_number }}</td>
                             <td>{{ data.vehicle_type }}</td>
                             <td>{{ data.vehicle_color }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-block btn-primary">Edit</a>
+                                <a href="{% url 'edit_vehicle' data.id %}"
+                                    class="btn btn-sm btn-block btn-primary">Edit</a>
                             </td>
                             <td>
                                 <a href="{% url 'delete_vehicle' data.id %}"
