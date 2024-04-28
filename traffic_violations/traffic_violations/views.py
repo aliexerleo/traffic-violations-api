@@ -4,9 +4,10 @@ from .serializers import UserSerializer, violationSerializer
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from rest_framework import status
-from django.contrib.auth import authenticate
+# from django.contrib.auth import authenticate
 import jwt
 from django.conf import settings
+from apps.report.models import Vehicle
 
 @api_view(['POST'])
 def login(request):
@@ -23,11 +24,14 @@ def login(request):
 @api_view(['POST'])
 def cargar_infraccion(request):
     violation = violationSerializer(data=request.data)
-    # validate token in header request
+    licence_to_load = request.data['licence']
+    vehicle_data = Vehicle.objects.filter(vehicle_number=licence_to_load)
+    if len(vehicle_data) < 1:
+        return Response({'message': 'Licence not found'}, status=status.HTTP_404_NOT_FOUND)
     token = request.headers.get('Authorization')
     if not token:
         return Response({'message': 'Token is required'}, status=status.HTTP_401_UNAUTHORIZED)
     if violation.is_valid():
         violation.save()
-        return Response({'message': 'Violation saved'}, status=status.HTTP_201_CREATED)
-    return Response({'message': 'List of persons'})
+        return Response({'message': 'Violation added'}, status=status.HTTP_200_OK)
+    return Response({'message': 'licence not match'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

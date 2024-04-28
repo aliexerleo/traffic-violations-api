@@ -25,7 +25,7 @@ class Violation(models.Model):
     licence = models.CharField(max_length=100)
     date_incidence= models.DateTimeField(auto_now_add=True)
     official_comment = models.TextField()
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True)
+    email = models.EmailField(null=True)
 
     def __str__(self):
-        return '{0}, {1}'.format(self.licence, self.date_incidence)
+        return '{0}, {1}'.format(self.licence, self.email)

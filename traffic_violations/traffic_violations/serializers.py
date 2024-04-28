@@ -10,4 +10,4 @@ class UserSerializer(serializers.ModelSerializer):
 class violationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Violation
-        fields = ['licence','date_incidence','official_comment']
+        fields = ['licence','date_incidence','official_comment','email']
