@@ -15,8 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from apps.report import views
+from . import views as official_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,5 +40,9 @@ urlpatterns = [
     path('addVehicle/', views.create_vehicle, name='add_vehicle'),
     path('editVehicle/<int:id>', views.update_vehicle, name='edit_vehicle'),
     path('editingVehicle/', views.updating_vehicle, name='editing_vehicle'),
+
+    # url  violation
+    re_path('login', official_views.login, name='login'),
+    re_path('load', official_views.cargar_infraccion, name='load'),
 
 ]
