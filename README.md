@@ -78,7 +78,7 @@ Mexico1986
 - Daniel
 Sudafrica2010
 
-## Dokcer instruction
+## Docker instructions
 
 You need download the docker image from docker-hub. And Run the container
 ```bash
