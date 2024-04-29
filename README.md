@@ -64,6 +64,20 @@ For checking the app go to the http://127.0.0.1:8000/
        }
     ```
 
+## users of django dahsboard
+
+- Admin
+admin123
+
+- David
+Brasil2014
+
+- Camilo
+Mexico1986
+
+- Daniel
+Sudafrica2010
+
 ## Authors
 
 - [@aliexerleo](https://github.com/aliexerleo/)
