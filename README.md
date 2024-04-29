@@ -29,8 +29,8 @@ For checking the app go to the http://127.0.0.1:8000/
     POST
     URL:
     localhost:8000/login
-    body 
     ```bash
+    body
         {
         "username":"David",
         "password": "Brasil2014"
@@ -41,9 +41,9 @@ For checking the app go to the http://127.0.0.1:8000/
     type: 
     POST
     URL:
-    localhost:8000/load
-    body 
+    localhost:8000/load 
      ```bash
+     body
         {
         "licence": "HGO315",
         "date_incidence": "",
@@ -57,8 +57,8 @@ For checking the app go to the http://127.0.0.1:8000/
     GET
     URL:
     localhost:8000/report
-    body 
     ```bash
+    body
        {
         "email": "sami@gmail.com"
        }
