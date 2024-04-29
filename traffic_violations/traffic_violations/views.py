@@ -1,13 +1,15 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer, violationSerializer
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 from django.contrib.auth.models import User
 from rest_framework import status
 # from django.contrib.auth import authenticate
 import jwt
 from django.conf import settings
-from apps.report.models import Vehicle
+from apps.report.models import Vehicle, Violation
+from django.http import JsonResponse
+
 
 @api_view(['POST'])
 def login(request):
@@ -18,8 +20,7 @@ def login(request):
     token = jwt.encode({'user': user.username}, settings.SECRET_KEY)
     serialize = UserSerializer(instance=user)
     return Response({'token': token, 'user': serialize.data}, status=status.HTTP_200_OK)
-    # # else:
-    #     return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
 
 @api_view(['POST'])
 def cargar_infraccion(request):
@@ -35,3 +36,14 @@ def cargar_infraccion(request):
         violation.save()
         return Response({'message': 'Violation added'}, status=status.HTTP_200_OK)
     return Response({'message': 'licence not match'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+def generar_informe(request):
+    email = request.data['email']
+    violations = Violation.objects.filter(email=email)
+    if len(violations) < 1:
+        return Response({'message': 'No violations found'}, status=status.HTTP_404_NOT_FOUND)
+    serialize = violationSerializer(instance=violations, many=True)
+    return Response({'violations': serialize.data}, status=status.HTTP_200_OK)
+
+   

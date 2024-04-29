@@ -44,5 +44,6 @@ urlpatterns = [
     # url  violation
     re_path('login', official_views.login, name='login'),
     re_path('load', official_views.cargar_infraccion, name='load'),
+    re_path('report', official_views.generar_informe, name='report'),
 
 ]
