@@ -19,7 +19,7 @@ For checking the app go to the http://127.0.0.1:8000/
 
 ## Features
 
-- The application can add remove update and list vehicle, person.
+- The application can add remove update and list vehicle and person.
 - For management officials the application use the User native model of django. For add new officila/user you must be the django admin dashboard. And only the application can delete and edit name of officials.
 - For load new infraction you must follow this step.
     use postman.
