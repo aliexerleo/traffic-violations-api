@@ -78,6 +78,38 @@ Mexico1986
 - Daniel
 Sudafrica2010
 
+## Architecture
+
+                ┌───────────────────────────────────────────────┐
+                │                   AWS Cloud                    │
+                │                                               │
+                │      ┌──────────────────────────────┐         │
+                │      │            VPC               │         │
+                │      └─────────────┬────────────────┘         │
+                │                    │                           │
+                │                    │                           │
+                │                    ▼                           │
+                │      ┌──────────────────────────────┐         │
+                │      │         EC2 Instance         │         │
+                │      └─────────────┬────────────────┘         │
+                │                    │                           │
+                │                    │                           │
+                │                    ▼                           │
+                │      ┌──────────────────────────────┐         │
+                │      │       PostgreSQL DB         │         │
+                │      └──────────────────────────────┘         │
+                └───────────────────────────────────────────────┘
+
+
+## Explanation:
+
+- AWS Cloud: Represents the cloud environment provided by Amazon Web Services.
+- VPC (Virtual Private Cloud): A virtual network dedicated to your AWS account. It enables you to launch AWS resources into a virtual network that you've defined.
+- EC2 Instance: An Amazon Elastic Compute Cloud (EC2) instance, which represents a virtual server in the cloud. In this setup, the EC2 instance could be running your application or web server.
+- PostgreSQL DB: Represents a PostgreSQL database instance running in the AWS cloud. It could be hosted on an RDS (Relational Database Service) instance or on an EC2 instance itself.
+
+This diagram provides a high-level overview of how these components might be set up in the AWS cloud. Depending on your specific requirements, there could be additional components, such as security groups, subnets, route tables, and so on, that need to be configured within the VPC to ensure proper network isolation and security.
+
 ## Authors
 
 - [@aliexerleo](https://github.com/aliexerleo/)
