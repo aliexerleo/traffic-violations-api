@@ -32,8 +32,8 @@ For checking the app go to the http://127.0.0.1:8000/
     ```bash
     body
         {
-        "username":"David",
-        "password": "Brasil2014"
+        "username":"youruser",
+        "password": "yourpass"
         }
     ```
     After that you can make a request to load new infraction with the token and infraction data in the body.
