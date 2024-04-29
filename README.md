@@ -78,6 +78,16 @@ Mexico1986
 - Daniel
 Sudafrica2010
 
+## Dokcer instruction
+
+You need download the docker image from docker-hub. And Run the container
+```bash
+   docker login
+   docker pull aliexerleo/crud-django-traffic-app-docker
+   docker run -p 8000:8000 aliexerleo/crud-django-traffic-app-docker
+```
+For checking the app go to the http://127.0.0.1:8000/
+
 ## Architecture
 
                 ┌───────────────────────────────────────────────┐
